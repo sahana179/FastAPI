@@ -26,7 +26,7 @@ node
         helm validate        
         '''          
      }  
-     stage('Deploy to K8's'){     
+     stage('Deploy to K8s'){     
       //  timeout(time: 10, unit: 'MINUTES') {
       //  input message: "Do you want to proceed for deployment?"
      //}                   
@@ -34,5 +34,6 @@ node
         cd helm
         helm upgrade --install FastAPI FastAPI/ -n fa-dev
         '''          
-     }               
-  }
+     }
+                    
+}
