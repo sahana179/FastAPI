@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: sahanas179/FastAPI
+  repository: sahanas179/fast-api
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "btag"
