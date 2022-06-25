@@ -9,14 +9,14 @@ node
 	}         
     stage('Build'){        	   
             sh label: '', script: '''                                        
-            docker build -t sahana179/FastAPI:$BUILD_NUMBER .           
+            docker build -t sahanas179/FastAPI:$BUILD_NUMBER .           
             '''  
             echo "Build Succcessful"     	    
     }
     stage('Push the Docker image'){        
             sh label: '', script: '''                                                   
-            docker push sahana179/FastAPI:$BUILD_NUMBER             
-            docker rmi -f sahana179/FastAPI:$BUILD_NUMBER
+            docker push sahanas179/FastAPI:$BUILD_NUMBER             
+            docker rmi -f sahanas179/FastAPI:$BUILD_NUMBER
             '''                      
     }
     stage('Validate Helm Chart'){                             
