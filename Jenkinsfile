@@ -26,8 +26,8 @@ node
     stage('Validate Helm Chart'){                             
         sh label: '', script: '''   
         cd helm
-        sed -i 's/btag/'$BUILD_NUMBER'/g' FastAPI/values.yaml
-        helm lint FastAPI        
+        sed -i 's/btag/'$BUILD_NUMBER'/g' fastapi/values.yaml
+        helm lint fastapi        
         '''          
      }  
      stage('Deploy to K8s'){     
@@ -36,7 +36,7 @@ node
      //}                   
         sh label: '', script: '''   
         cd helm
-        helm upgrade --install fastapi FastAPI/ -n fa-dev
+        helm upgrade --install fastapi fastapi/ -n fa-dev
         '''          
      }
                     

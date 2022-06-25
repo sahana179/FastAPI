@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "FastAPI.fullname" . }}
+  name: {{ include "fastapi.fullname" . }}
   labels:
-    {{- include "FastAPI.labels" . | nindent 4 }}
+    {{- include "fastapi.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "FastAPI.selectorLabels" . | nindent 6 }}
+      {{- include "fastapi.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,13 +18,13 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "FastAPI.selectorLabels" . | nindent 8 }}
+        {{- include "fastapi.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "FastAPI.serviceAccountName" . }}
+      serviceAccountName: {{ include "fastapi.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
