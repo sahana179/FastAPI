@@ -26,7 +26,7 @@ node
     stage('Validate Helm Chart'){                             
         sh label: '', script: '''   
         cd helm
-        sed -i 's/btag/'$BUILD_NUMBER'/g' values.tf
+        sed -i 's/btag/'$BUILD_NUMBER'/g' FastAPI/values.yaml
         helm validate        
         '''          
      }  
