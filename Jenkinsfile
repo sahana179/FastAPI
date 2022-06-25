@@ -32,7 +32,7 @@ node
      //}                   
         sh label: '', script: '''   
         cd helm
-        helm install FastAPI FastAPI/ -n FA-dev
+        helm upgrade --install FastAPI FastAPI/ -n FA-dev
         '''          
      }               
   }
