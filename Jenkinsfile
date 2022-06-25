@@ -27,7 +27,7 @@ node
         sh label: '', script: '''   
         cd helm
         sed -i 's/btag/'$BUILD_NUMBER'/g' FastAPI/values.yaml
-        helm validate        
+        helm lint FastAPI        
         '''          
      }  
      stage('Deploy to K8s'){     
