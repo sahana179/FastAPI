@@ -13,11 +13,15 @@ node
             '''  
             echo "Build Succcessful"     	    
     }
-    stage('Push the Docker image'){        
-            sh label: '', script: '''                                                   
-            docker push sahanas179/fast-api:$BUILD_NUMBER             
-            docker rmi -f sahanas179/fast-api:$BUILD_NUMBER
-            '''                      
+    stage('Push the Docker image') {                     
+            withCredentials([usernamePassword( credentialsId: 'docker', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){                                                              
+                sh label: '', script: '''                               
+                docker login --username $USERNAME --password $PASSWORD
+                docker push sahanas179/fast-api:$BUILD_NUMBER             
+                docker rmi -f sahanas179/fast-api:$BUILD_NUMBER
+                '''
+          }
+
     }
     stage('Validate Helm Chart'){                             
         sh label: '', script: '''   
