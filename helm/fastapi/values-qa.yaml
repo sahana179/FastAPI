@@ -1,0 +1,8 @@
+service:
+  podePort: 30302
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
