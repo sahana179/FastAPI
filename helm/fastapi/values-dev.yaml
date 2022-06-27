@@ -1,5 +1,5 @@
 service:
-  podePort: 30301
+  nodePort: 30301
 
 autoscaling:
   enabled: false
