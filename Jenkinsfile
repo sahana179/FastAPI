@@ -35,7 +35,7 @@ node
      //}                   
         sh label: '', script: '''   
         cd helm
-        helm upgrade --install fastapi fastapi/ -f fastapi/values-dev.yaml --set image.tag=$BUILD_NUMBER' -n fa-dev
+        helm upgrade --install fastapi fastapi/ -f fastapi/values-dev.yaml --set image.tag=$BUILD_NUMBER -n fa-dev
         '''          
      }
                     
