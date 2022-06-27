@@ -25,8 +25,7 @@ node
     }
     stage('Validate Helm Chart'){                             
         sh label: '', script: '''   
-        cd helm
-        sed -i 's/btag/'$BUILD_NUMBER'/g' fastapi/values.yaml
+        cd helm        
         helm lint fastapi        
         '''          
      }  
@@ -36,7 +35,7 @@ node
      //}                   
         sh label: '', script: '''   
         cd helm
-        helm upgrade --install fastapi fastapi/ -f fastapi/values-dev.yaml -n fa-dev
+        helm upgrade --install fastapi fastapi/ -f fastapi/values-dev.yaml --set image.tag=$BUILD_NUMBER' -n fa-dev
         '''          
      }
                     
