@@ -5,7 +5,7 @@ node
 	}
 	stage('Code Checkout')
 	{
-        git url: 'https://github.com/sahana179/FastAPI.git', branch: 'master' 
+        git url: 'https://github.com/sahana179/FastAPI.git', branch: 'develop' 
 	}         
     stage('Build'){        	   
             sh label: '', script: '''                                        
@@ -23,20 +23,32 @@ node
           }
 
     }
+    /*
     stage('Validate Helm Chart'){                             
         sh label: '', script: '''   
         cd helm        
         helm lint fastapi        
         '''          
      }  
-     stage('Deploy to K8s'){     
-      //  timeout(time: 10, unit: 'MINUTES') {
-      //  input message: "Do you want to proceed for deployment?"
-     //}                   
+     stage('Deploy to K8s'){                              
         sh label: '', script: '''   
         cd helm
         helm upgrade --install fastapi fastapi/ -f fastapi/values-dev.yaml --set image.tag=$BUILD_NUMBER -n fa-dev
         '''          
+     }
+     */
+     stage('    '){
+
+         withCredentials([usernamePassword( credentialsId: 'git', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]){                                                              
+                sh label: '', script: '''                               
+                git clone https://github.com/sahana179/helm-chart.git
+                cd helm-chart
+                yq eval '.image.tag = $BUILD_NUMBER' -i fastapi/values-dev.yaml
+                git add .
+                git commit -m "Triggered Build"
+                git push https://$GIT_USERNAME:@GIT_PASSWORD@github.com/sahana179/helm-chart.git
+                '''
+          }        
      }
                     
 }
