@@ -45,10 +45,10 @@ node
                 ls
                 cd helm-chart
                 ls
-                yq eval '.image.tag = 60' -i fastapi/values-dev.yaml
+                yq eval '.image.tag = env(BUILD_NUMBER)' -i fastapi/values-dev.yaml
                 git add .
                 git commit -m "Triggered Build"
-                git push https://$GIT_USERNAME:@GIT_PASSWORD@github.com/sahana179/helm-chart.git
+                git push https://$GIT_USERNAME:$GIT_PASSWORD@github.com/sahana179/helm-chart.git
                 '''
           }        
      }
