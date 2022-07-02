@@ -37,7 +37,7 @@ node
         '''          
      }
      */
-     stage('    '){
+     stage('Update Helm repo'){
 
          withCredentials([usernamePassword( credentialsId: 'git', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]){                                                              
                 sh label: '', script: '''                               
