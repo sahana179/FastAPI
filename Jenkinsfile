@@ -42,7 +42,9 @@ node
          withCredentials([usernamePassword( credentialsId: 'git', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]){                                                              
                 sh label: '', script: '''                               
                 git clone https://github.com/sahana179/helm-chart.git
+                ls
                 cd helm-chart
+                ls
                 yq eval '.image.tag = $BUILD_NUMBER' -i fastapi/values-dev.yaml
                 git add .
                 git commit -m "Triggered Build"
