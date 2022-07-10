@@ -5,7 +5,7 @@ node
 	}
 	stage('Code Checkout')
 	{
-        git url: 'https://github.com/sahana179/FastAPI.git', branch: 'develop' 
+        git url: 'https://github.com/sahana179/FastAPI.git', branch: 'master' 
 	}         
     stage('Build'){        	   
             sh label: '', script: '''                                        
